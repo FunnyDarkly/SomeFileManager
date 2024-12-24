@@ -57,7 +57,7 @@ class FileTableWidget(QTableWidget):
                     if not file_name:
                         continue
 
-                    file_size = self.get_file_size(file_name)
+                    file_size = round(self.get_file_size(file_name) / 1024, 2)
                     file_extension = os.path.splitext(file_name)[1]
 
                     base_name = os.path.basename(file_name)
@@ -68,10 +68,10 @@ class FileTableWidget(QTableWidget):
 
                     self.cursor.execute(
                         'INSERT INTO files (filename, create_date, add_date, file_extension, size) VALUES (?, ?, ?, ?, ?)',
-                        (file_name_only, create_date, add_date, file_extension, file_size))
+                        (file_name_only, create_date, add_date, file_extension, f"{file_size} KB"))
                     self.conn.commit()
 
-                    self.add_file(file_name_only, create_date, add_date, file_extension, file_size)
+                    self.add_file(file_name_only, create_date, add_date, file_extension, f"{file_size} KB")
 
                 except Exception as e:
                     print(f"Error adding file '{file_name}': {e}")  # Log the error

@@ -74,7 +74,7 @@
    <widget class="QSplitter" name="splitter">
     <property name="geometry">
      <rect>
-      <x>14</x>
+      <x>20</x>
       <y>520</y>
       <width>761</width>
       <height>31</height>
@@ -109,9 +109,14 @@
       <string>Create new tag</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="tageditButton">
+     <property name="text">
+      <string>Edit tag</string>
+     </property>
+    </widget>
     <widget class="QPushButton" name="tagaddButton">
      <property name="text">
-      <string>Add tag to file</string>
+      <string>Add tag to tab</string>
      </property>
     </widget>
    </widget>

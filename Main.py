@@ -6,12 +6,16 @@ from PyQt5.QtWidgets import QVBoxLayout, QMessageBox
 from FileTableWidget import FileTableWidget
 from TabCreateWindow import TabCreateWindow
 from TabEditWindow import TabEditWindow
+from TagManager import TagManager
+from TagCreateWindow import TagCreateWindow
+from TagEditWindow import TagEditWindow
+from TagAddWindow import TagAddWindow
 
 class MyApp(QtWidgets.QMainWindow):
     def __init__(self):
         super(MyApp, self).__init__()
 
-        uic.loadUi(os.path.join('static', 'ui', 'main.ui'), self)
+        uic.loadUi('static/ui/main.ui', self)
 
         self.titles = [
             "File Manager 2.0: The upgrade nobody asked for",
@@ -48,8 +52,19 @@ class MyApp(QtWidgets.QMainWindow):
         self.actionAdd_file_to_tab = self.findChild(QtWidgets.QAction, 'actionAdd_file_to_tab')
         self.actionAdd_file_to_tab.triggered.connect(self.add_files_to_active_table)
 
+        self.tag_manager = TagManager()
+
         self.tabeditButton = self.findChild(QtWidgets.QPushButton, 'tabeditButton')
         self.tabeditButton.clicked.connect(self.open_tab_edit_window)
+
+        self.tagcreateButton = self.findChild(QtWidgets.QPushButton, 'tagcreateButton')
+        self.tagcreateButton.clicked.connect(self.open_tag_create_window)
+
+        self.tageditButton = self.findChild(QtWidgets.QPushButton, 'tageditButton')
+        self.tageditButton.clicked.connect(self.open_tag_edit_window)
+
+        self.tagaddButton = self.findChild(QtWidgets.QPushButton, 'tagaddButton')
+        self.tagaddButton.clicked.connect(self.open_tag_add_window)
 
     def add_files_to_active_table(self):
         current_index = self.tab_widget.currentIndex()
@@ -99,6 +114,18 @@ class MyApp(QtWidgets.QMainWindow):
                     table_widget.delete_database()
                 except Exception as e:
                     print(f"Error deleting database or removing tab: {e}")
+
+    def open_tag_create_window(self):
+        self.tag_create_window = TagCreateWindow(self.tag_manager)
+        self.tag_create_window.show()
+
+    def open_tag_edit_window(self):
+        self.tag_edit_window = TagEditWindow(self.tag_manager)
+        self.tag_edit_window.show()
+
+    def open_tag_add_window(self):
+        self.tag_add_window = TagAddWindow(self.tag_manager, self)
+        self.tag_add_window.show()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
