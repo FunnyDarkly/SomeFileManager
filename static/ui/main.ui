@@ -106,7 +106,7 @@
     </widget>
     <widget class="QPushButton" name="tagcreateButton">
      <property name="text">
-      <string>Create new tag</string>
+      <string>Create tag</string>
      </property>
     </widget>
     <widget class="QPushButton" name="tageditButton">
@@ -141,6 +141,7 @@
      <string>Edit</string>
     </property>
     <addaction name="actionEdit_tab"/>
+    <addaction name="actionEdit_tag"/>
    </widget>
    <widget class="QMenu" name="menuAdd">
     <property name="title">
@@ -148,6 +149,7 @@
     </property>
     <addaction name="actionAdd_tab"/>
     <addaction name="actionAdd_file_to_tab"/>
+    <addaction name="actionAdd_tag_to_tab"/>
    </widget>
    <addaction name="menuFIle"/>
    <addaction name="menuEdit"/>
@@ -187,6 +189,16 @@
   <action name="actionClear_database">
    <property name="text">
     <string>Clear database</string>
+   </property>
+  </action>
+  <action name="actionAdd_tag_to_tab">
+   <property name="text">
+    <string>Add tag to tab</string>
+   </property>
+  </action>
+  <action name="actionEdit_tag">
+   <property name="text">
+    <string>Edit tag</string>
    </property>
   </action>
  </widget>

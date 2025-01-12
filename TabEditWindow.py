@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QDialog
-from tab_edit import Ui_Form as Ui_TabEdit
+from tab_edit_ui import Ui_Form as Ui_TabEdit
 
 class TabEditWindow(QDialog):
     def __init__(self, current_tab_text, tab_index, tab_widget):

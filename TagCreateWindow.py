@@ -1,10 +1,11 @@
-from PyQt5 import uic
 from PyQt5.QtWidgets import QLineEdit, QPushButton, QDialog, QMessageBox
+from tag_create_ui import Ui_Form as Ui_TagCreate
 
 class TagCreateWindow(QDialog):
     def __init__(self, tag_manager):
         super(TagCreateWindow, self).__init__()
-        self.ui = uic.loadUi('static/ui/tag_create.ui', self)
+        self.ui = Ui_TagCreate()
+        self.ui.setupUi(self)
         self.tag_manager = tag_manager
 
         self.tag_name_edit = self.findChild(QLineEdit, 'tagName')
@@ -16,7 +17,7 @@ class TagCreateWindow(QDialog):
         self.close_button.clicked.connect(self.close)
 
     def create_tag(self):
-        tag_name = self.tag_name_edit.text()
+        tag_name = self.tag_name_edit.text().strip()
         tag_values = self.tag_values_edit.text()
         tag_values_list = tag_values.split(',')
 
