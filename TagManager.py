@@ -97,9 +97,9 @@ class TagManager:
 
             tag = cursor.fetchone()
             if tag:
-                return tag  # Returns a tuple (id, tag, values)
+                return tag
             else:
-                return None  # No tag found with the provided name
+                return None
         except Exception as e:
             print(f"Database error: {str(e)}")
             return None

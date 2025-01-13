@@ -128,24 +128,21 @@ class FileTableWidget(QTableWidget):
             if column_name in existing_columns:
                 raise Exception(f"Column '{column_name}' already exists.")
 
-            # Add the column to the database
             query = f'ALTER TABLE files ADD COLUMN {column_name} TEXT'
             self.cursor.execute(query)
-            self.conn.commit()  # Commit the change to the database
+            self.conn.commit()
 
-            # Update the table view
             current_column_count = self.columnCount()
-            self.insertColumn(current_column_count)  # Add a new column at the end
-            self.setHorizontalHeaderItem(current_column_count, QTableWidgetItem(column_name))  # Set header name
+            self.insertColumn(current_column_count)
+            self.setHorizontalHeaderItem(current_column_count, QTableWidgetItem(column_name))
 
-            # Initialize new column data (e.g., populate with empty strings for new rows)
             for row in range(self.rowCount()):
-                self.setItem(row, current_column_count, QTableWidgetItem(""))  # Default empty item
+                self.setItem(row, current_column_count, QTableWidgetItem(""))
 
             print(f"Column '{column_name}' added successfully to the UI.")
 
         except Exception as e:
-            print(f"Error adding column: {str(e)}")  # Debugging error message
+            print(f"Error adding column: {str(e)}")
 
     def delete_selected_column(self):
         selected_items = self.selectedItems()
@@ -214,9 +211,9 @@ class FileTableWidget(QTableWidget):
         filename_item = self.item(row, 0)
 
         if filename_item:
-            column_name = self.horizontalHeaderItem(column).text()  # Retrieve the header name
+            column_name = self.horizontalHeaderItem(column).text()
 
-            new_value = item.text()  # Get the new value entered by the user
+            new_value = item.text()
 
             try:
                 self.cursor.execute(f'''
